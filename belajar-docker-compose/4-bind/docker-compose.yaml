@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  # definisikan kontainer
+  postgres-db:
+    container_name: postgres-db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dbadmin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=mydb
+    # jangan lupa buat direktori host dulu
+    volumes:
+      - ./pgdata:/var/lib/postgres/data:bind

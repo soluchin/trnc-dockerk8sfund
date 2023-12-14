@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # definisikan kontainer
+  nginx-webserver:
+    # nama kontainer
+    container_name: nginx-webserver
+    image: nginx
+    ports:
+      - "8080:80"
+
+  # buat kontainer lain
+  nginx-webserver2:
+    container_name: nginx-webserver2
+    image: nginx
+    ports:
+      - target: 80
+        published: 8081
+        protocol: tcp
+        mode: host
+        

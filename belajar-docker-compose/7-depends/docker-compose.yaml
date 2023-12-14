@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  appnet:
+    name: appnet
+    driver: bridge
+
+services:
+  mainapp:
+    container_name: mainapp
+    image: alpine
+    networks:
+      - appnet
+    depends_on:
+      - postgresdb
+
+  postgresdb:
+    container_name: postgresdb
+    image: postgres
+    environment:
+      - POSTGRES_USER=dbadmin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=mydb

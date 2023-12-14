@@ -1,0 +1,29 @@
+version: '3.8'
+
+# membuat networks
+networks:
+  appnet:
+    name: appnet
+    driver: bridge
+
+services:
+  # definisikan kontainer
+  nginx-webserver:
+    container_name: nginx-webserver
+    image: nginx
+    ports:
+      - "8080:80"
+    networks:
+      - appnet
+
+  nginx-webserver2:
+    container_name: nginx-webserver2
+    image: nginx
+    ports:
+      - target: 80
+        published: 8081
+        protocol: tcp
+        mode: host
+    networks:
+      - appnet
+        

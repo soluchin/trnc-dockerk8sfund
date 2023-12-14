@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgresdb:
+    container_name: postgresdb
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dbadmin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=mydb
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.25"
+          memory: 50M
+        limits:
+          cpus: "0.5"
+          memory: 100M
+
+
+
+
+
+          
+    
