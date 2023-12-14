@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  # definisikan kontainer
+  nginx-webserver:
+    # nama kontainer
+    container_name: nginx-webserver
+    image: nginx
+
+  # buat kontainer lain
+  nginx-webserver2:
+    container_name: nginx-webserver2
+    image: nginx
