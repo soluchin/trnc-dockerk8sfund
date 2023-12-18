@@ -19,7 +19,7 @@ def home():
 @app.route('/<string:name>', methods = ['GET']) 
 def logs(name):
     with open(f'./logs/log.txt', 'a') as file:
-        file.write(f'{name} was logging - {datetime.now()}')
+        file.write(f'{name} was logging - {datetime.now()}\n')
     return f'hello {name}'
 
 # driver function 

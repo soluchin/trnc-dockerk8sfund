@@ -5,6 +5,8 @@ networks:
   appnet:
     name: appnet
     driver: bridge
+  dbnet:
+    name: dbnet
 
 services:
   # definisikan kontainer
@@ -26,4 +28,4 @@ services:
         mode: host
     networks:
       - appnet
-        
+      - dbnet

@@ -1,5 +1,5 @@
-FROM alpine
+FROM nginx
 
 ENV APP_PORT=8080
 
-CMD echo "application running on port {${APP_PORT}}"
+CMD ["nginx", "-g", "daemon off;"]

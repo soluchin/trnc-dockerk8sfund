@@ -45,8 +45,17 @@ docker container create -i -t --name simpleapp -e APP_NAME=SimpleApp alpine
 docker container start -i simpleapp
 > echo $APP_NAME
 
+# lihat stats
+docker container stats
+
 # menambahkan resource limit
 docker container create --name nginx-webserver --memory 100m --cpus 0.5 nginx:latest
+
+# inspect detail dari object
+# docker container inspect <contianer-name>
+# docker image inspect <image-name>
+docker container inspect nginx-webserver
+docker image inspect nginx
 
 # menambahkan network
 # docker network create <network-name>
@@ -74,7 +83,7 @@ docker inspect --format='{{range .NetworkSettings.Networks}}{{.Network}}{{end}}'
 # --mount "type=<mount-type>,source=<storage-src>,destination=<storage-dest>"
 # bind
 mkdir pgdata
-docker container create --name postgres-db --publish 5432:5432 --mount "type=bind,source=./pgdata,destination=/var/lib/postgresql/data/" -e POSTGRES_USER=dbadmin -e POSTGRES_PASSWORD=admin123 -e POSTGRES_DB=mydb postgres
+docker container create --name postgresdb --publish 5432:5432 --mount "type=bind,source=./pgdata,destination=/var/lib/postgresql/data/" -e POSTGRES_USER=dbadmin -e POSTGRES_PASSWORD=admin123 -e POSTGRES_DB=mydb postgres
 # volume
 docker volume create pgdata
-docker container create --name postgres-db --publish 5432:5432 --mount "type=volume,source=pgdata,destination=/var/lib/postgresql/data/" -e POSTGRES_USER=dbadmin -e POSTGRES_PASSWORD=admin123 -e POSTGRES_DB=mydb postgres
+docker container create --name postgresdb --publish 5432:5432 --mount "type=volume,source=pgdata,destination=/var/lib/postgresql/data/" -e POSTGRES_USER=dbadmin -e POSTGRES_PASSWORD=admin123 -e POSTGRES_DB=mydb postgres

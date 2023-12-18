@@ -1,8 +1,5 @@
 FROM alpine
 
 RUN mkdir app
-RUN cd app
 
-RUN echo "hello world!" > "hw.txt"
-
-
+RUN echo "hello world!" > "app/hw.txt"

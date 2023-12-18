@@ -3,6 +3,8 @@ version: '3.8'
 volumes:
   pgdata:
     name: pgdata
+  volumelagi:
+    name: volumelagi
 
 services:
   # definisikan kontainer
@@ -15,6 +17,17 @@ services:
       - POSTGRES_USER=dbadmin
       - POSTGRES_PASSWORD=admin123
       - POSTGRES_DB=mydb
-    # jangan lupa buat direktori host dulu
     volumes:
       - pgdata:/var/lib/postgres/data:volume
+
+  postgres:
+    container_name: postgres-db2
+    image: postgres
+    ports:
+      - "5431:5432"
+    environment:
+      - POSTGRES_USER=dbadmin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=mydb
+    volumes:
+      - volumelagi:/var/lib/postgres/data:volume
