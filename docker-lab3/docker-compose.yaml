@@ -1,0 +1,10 @@
+version: "3.8"
+
+volumes:
+  lab3data:
+    name: lab3data
+
+networks:
+  lab3net:
+    name: lab3net
+

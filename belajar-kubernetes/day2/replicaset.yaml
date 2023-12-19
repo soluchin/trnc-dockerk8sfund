@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: set-of-helloapp
+  labels:
+    app: hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: helloapp
+      team: dev
+  template:
+    metadata:
+      name: helloapp
+      labels:
+        name: helloapp
+        team: dev
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80

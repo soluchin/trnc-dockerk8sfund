@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: anotation
+  labels:
+    team: sales
+  annotations:
+    description: aplikasi ini adalah aplikasi untuk menjalankan tralalala trilili
+    developer-notes: dont touch this pod
+spec:
+  containers:
+    - name: nginx-webserver
+      image: nginx
+      ports:
+        - containerPort: 80

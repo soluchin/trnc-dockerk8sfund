@@ -2,6 +2,6 @@ FROM alpine
 
 RUN mkdir app
 
-ADD hw.txt app
+ADD https://drive.google.com/file/d/1mVFtPP7E_BiD-ON58rH7c18N2INnjT31/view?usp=drive_link app
 
 CMD cat "app/hw.txt"
