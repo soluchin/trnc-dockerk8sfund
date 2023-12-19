@@ -42,10 +42,12 @@ metadata:
     name: nginx-ingress
 spec:
   rules:
-    - host: nginx.khannedy.local
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: nginx-service
-              servicePort: 80
+  - host: nginx.soluchin.com
+  - http:
+      paths:
+      - path: /
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
