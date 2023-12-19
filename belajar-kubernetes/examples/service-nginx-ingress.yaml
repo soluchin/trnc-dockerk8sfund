@@ -42,13 +42,21 @@ metadata:
     name: nginx-ingress
 spec:
   rules:
-  - host: nginx.soluchin.com
   - http:
       paths:
-      - path: /
+      - path: "/service1"
         pathType: Prefix
         backend:
           service:
             name: nginx-service
             port:
               number: 80
+  - http:
+      paths:
+      - path: "/service2"
+        pathType: Prefix
+        backend:
+          service:
+            name: db-service
+            port:
+              number: 5432

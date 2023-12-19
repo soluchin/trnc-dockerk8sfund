@@ -8,3 +8,7 @@ spec:
     image: nginx
     ports:
     - containerPort: 80
+    env:
+        - name: HTML_LOCATION
+          value: /app/folder-from-env
+
