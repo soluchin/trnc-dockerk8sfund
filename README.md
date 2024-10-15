@@ -1,4 +1,4 @@
-# Trainocate Docker Kubernetes Fundamental
+# Training Docker Kubernetes Fundamental
 Learning materials
 
 by: soluchin
