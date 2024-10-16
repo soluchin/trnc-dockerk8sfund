@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendees Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .form-container,
+    .list-container {
+      margin: 20px auto;
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #218838;
+    }
+
+    .list-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list-container li {
+      background-color: #e9ecef;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Attendees Management</h1>
+
+  <div class="form-container">
+    <h2>Add Attendee</h2>
+    <input type="text" id="attendeeName" placeholder="Enter attendee name">
+    <button onclick="addAttendee()">Add Attendee</button>
+  </div>
+
+  <div class="list-container">
+    <h2>List of Attendees</h2>
+    <button onclick="getAttendees()">Refresh List</button>
+    <ul id="attendeesList">
+      <!-- Attendees will be listed here -->
+    </ul>
+  </div>
+
+  <script>
+    // Function to fetch attendees and update the UI
+    function getAttendees() {
+      fetch('http://localhost:3000/attendees') // Change to your correct API URL
+        .then(response => response.json())
+        .then(data => {
+          const attendeesList = document.getElementById('attendeesList');
+          attendeesList.innerHTML = ''; // Clear the current list
+
+          data.forEach(attendee => {
+            const listItem = document.createElement('li');
+            listItem.textContent = attendee.name;
+            attendeesList.appendChild(listItem);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching attendees:', error);
+        });
+    }
+
+    // Function to add a new attendee
+    function addAttendee() {
+      const nameInput = document.getElementById('attendeeName');
+      const attendeeName = nameInput.value;
+
+      if (attendeeName === '') {
+        alert('Please enter a name');
+        return;
+      }
+
+      fetch('http://localhost:3000/attendees', { // Change to your correct API URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: attendeeName })
+      })
+        .then(response => response.json())
+        .then(data => {
+          alert('Attendee added successfully!');
+          nameInput.value = ''; // Clear the input field
+          getAttendees(); // Refresh the list
+        })
+        .catch(error => {
+          console.error('Error adding attendee:', error);
+        });
+    }
+  </script>
+
+</body>
+
+</html>
